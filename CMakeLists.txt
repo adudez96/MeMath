@@ -7,5 +7,21 @@ project(MathEngine VERSION 1.0)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# add my libraries
+add_subdirectory(logging)
+list(APPEND EXTRA_LIBS logger)
+list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/logging")
+
 # add the executable
 add_executable(mecli mecli.cxx)
+
+# link library files
+target_link_libraries(mecli PUBLIC ${EXTRA_LIBS})
+
+# add the binary tree to the search path for include files
+# so that we will find the library .h files
+target_include_directories(
+    mecli PUBLIC
+    "${PROJECT_BINARY_DIR}"
+    ${EXTRA_INCLUDES}
+)
