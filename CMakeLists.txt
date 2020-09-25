@@ -11,6 +11,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 add_subdirectory(logging)
 list(APPEND EXTRA_LIBS logger)
 list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/logging")
+add_subdirectory(memath)
+list(APPEND EXTRA_LIBS vector3)
+list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/memath")
 
 # add the executable
 add_executable(mecli mecli.cxx)
