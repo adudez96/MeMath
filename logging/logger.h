@@ -47,37 +47,37 @@ public:
     /**
      * Log a message
      */
-    void log(LogLevel level, const char* message);
+    template <typename M> void log(LogLevel level, const M message);
 
     /**
      * Log a message at LogLevel::TRACE level
      */
-    void trace(const char* message);
+    template <typename M> void trace(const M message);
 
     /**
      * Log a message at LogLevel::DEBUG level
      */
-    void debug(const char* message);
+    template <typename M> void debug(const M message);
 
     /**
      * Log a message at LogLevel::INFO level
      */
-    void info(const char* message);
+    template <typename M> void info(const M message);
 
     /**
      * Log a message at LogLevel::WARN level
      */
-    void warn(const char* message);
+    template <typename M> void warn(const M message);
 
     /**
      * Log a message at LogLevel::ERROR level
      */
-    void error(const char* message);
+    template <typename M> void error(const M message);
 
     /**
      * Log a message at LogLevel::FATAL level
      */
-    void fatal(const char* message);
+    template <typename M> void fatal(const M message);
 
 };
 

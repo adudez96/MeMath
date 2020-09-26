@@ -30,30 +30,60 @@ void Logger::setLevel(Logger::LogLevel level) {
     this->m_logLevel = level;
 }
 
-void Logger::log(Logger::LogLevel level, const char* message) {
+template <typename M> void Logger::log(Logger::LogLevel level, const M message) {
     std::cout << "[" << Logger::LOG_LEVEL_MAP[level] << "] " << message << std::endl;
 }
 
-void Logger::trace(const char* message) {
+template <typename M> void Logger::trace(const M message) {
     this->log(TRACE, message);
 }
 
-void Logger::debug(const char* message) {
+template <>
+void Logger::trace(const char* message) {
+    this->trace(std::string(message));
+}
+
+template <typename M> void Logger::debug(const M message) {
     this->log(DEBUG, message);
 }
 
-void Logger::info(const char* message) {
+template <>
+void Logger::debug(const char* message) {
+    this->debug(std::string(message));
+}
+
+template <typename M> void Logger::info(const M message) {
     this->log(INFO, message);
 }
 
-void Logger::warn(const char* message) {
+template <>
+void Logger::info(const char* message) {
+    this->info(std::string(message));
+}
+
+template <typename M> void Logger::warn(const M message) {
     this->log(WARN, message);
 }
 
-void Logger::error(const char* message) {
+template <>
+void Logger::warn(const char* message) {
+    this->warn(std::string(message));
+}
+
+template <typename M> void Logger::error(const M message) {
     this->log(ERROR, message);
 }
 
-void Logger::fatal(const char* message) {
+template <>
+void Logger::error(const char* message) {
+    this->error(std::string(message));
+}
+
+template <typename M> void Logger::fatal(const M message) {
     this->log(FATAL, message);
+}
+
+template <>
+void Logger::fatal(const char* message) {
+    this->fatal(std::string(message));
 }
